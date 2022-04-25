@@ -15,7 +15,9 @@ class MonografiaController extends Controller
      */
     public function index()
     {
-        //
+        return view('monografias.index', [
+            'monografias' => Monografia::paginate(),
+        ]);
     }
 
     /**
@@ -25,7 +27,9 @@ class MonografiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('monografias.create', [
+            'monografia' => new Monografia(),
+        ]);
     }
 
     /**
@@ -36,7 +40,10 @@ class MonografiaController extends Controller
      */
     public function store(StoreMonografiaRequest $request)
     {
-        //
+        $monografia = new Monografia($request->validated());
+        $monografia->save();
+
+        return redirect()->route('monografias.index');
     }
 
     /**
