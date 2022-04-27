@@ -25,10 +25,10 @@
                 <tbody class="bg-white">
                     @foreach ($monografias as $monografia)
                         <tr class="whitespace-nowrap">
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">
+                            <td class="px-6 py-4 text-sm text-blue-500 hover:underline">
+                                <a href="{{ route('monografias.show', $monografia) }}">
                                     {{ $monografia->titulo }}
-                                </div>
+                                </a>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="text-sm text-gray-900">
@@ -36,12 +36,17 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="/monografias/{{ $monografia->id }}/edit"
+                                <a href="{{ route('monografias.edit', $monografia) }}"
                                     class="px-4 py-1 text-sm text-white bg-blue-400 rounded">Editar</a>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="#"
-                                    class="px-4 py-1 text-sm text-white bg-red-400 rounded">Borrar</a>
+                                <form action="{{ route('monografias.destroy', $monografia) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-4 py-1 text-sm text-white bg-red-400 rounded">
+                                        Borrar
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

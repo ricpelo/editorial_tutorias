@@ -54,7 +54,9 @@ class MonografiaController extends Controller
      */
     public function show(Monografia $monografia)
     {
-        //
+        return view('monografias.show', [
+            'monografia' => $monografia,
+        ]);
     }
 
     /**
@@ -65,7 +67,9 @@ class MonografiaController extends Controller
      */
     public function edit(Monografia $monografia)
     {
-        //
+        return view('monografias.edit', [
+            'monografia' => $monografia,
+        ]);
     }
 
     /**
@@ -77,7 +81,11 @@ class MonografiaController extends Controller
      */
     public function update(UpdateMonografiaRequest $request, Monografia $monografia)
     {
-        //
+        $validated = $request->validated();
+        $monografia->fill($validated);
+        $monografia->save();
+
+        return redirect()->route('monografias.index');
     }
 
     /**
@@ -88,6 +96,8 @@ class MonografiaController extends Controller
      */
     public function destroy(Monografia $monografia)
     {
-        //
+        $monografia->delete();
+
+        return redirect()->route('monografias.index');
     }
 }
