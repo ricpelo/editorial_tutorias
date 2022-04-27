@@ -96,6 +96,7 @@ class MonografiaController extends Controller
      */
     public function destroy(Monografia $monografia)
     {
+        $monografia->articulos()->detach();
         $monografia->delete();
 
         return redirect()->route('monografias.index');
