@@ -33,4 +33,6 @@ Route::get('/articulos', function () {
     ]);
 });
 
+Route::get('/monografias/{monografia}/autores', [MonografiaController::class, 'autores']);
+
 require __DIR__.'/auth.php';

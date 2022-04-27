@@ -100,4 +100,11 @@ class MonografiaController extends Controller
 
         return redirect()->route('monografias.index');
     }
+
+    public function autores(Monografia $monografia)
+    {
+        return view('monografias.autores', [
+            'monografia' => $monografia,
+        ]);
+    }
 }
